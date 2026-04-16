@@ -4,6 +4,8 @@ metadata:
   name: nginx-deployment
   labels:
     app: nginx
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   replicas: 2
   selector:
