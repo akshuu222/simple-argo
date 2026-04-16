@@ -1,0 +1,11 @@
+apiVersion: ops.cloudwithvarjosh/v1   # Must match the group and version defined in the CRD
+kind: BackupPolicy                    # Must match the 'kind' field in the CRD
+
+metadata:
+  name: mysql-backup                  # Name of this BackupPolicy object
+  namespace: default                  # Since scope is Namespaced, this object will exist in the 'default' namespace
+
+spec:
+  schedule: "0 1 * * *"               # Backup should run daily at 1:00 AM (Cron format: min hour dom mon dow)
+  retentionDays: 7                    # Retain backups for 7 days; older ones can be deleted
+  targetPVC: mysql-data-pvc           # The name of the PersistentVolumeClaim (PVC) to back up
